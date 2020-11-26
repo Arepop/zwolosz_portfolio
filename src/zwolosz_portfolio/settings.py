@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'graphene_django',
-    'zwolosz_portfolio.portfolio_app'
+    'portfolio.apps.PortfolioConfig',
+    'frontend'
 ]
 
 MIDDLEWARE = [
@@ -125,5 +126,5 @@ STATIC_URL = '/static/'
 
 
 GRAPHENE = {
-    "SCHEMA": "zwolosz_portfolio.portfolio_app.schema.schema",
+    "SCHEMA": "portfolio.schema.schema",
 }

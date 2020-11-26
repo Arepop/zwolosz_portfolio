@@ -1,6 +1,8 @@
 import graphene
 from django.core.exceptions import ObjectDoesNotExist
 from graphql_relay import from_global_id
+from datetime import datetime
+from django.utils import timezone
 
 from ..models import Tile
 from .types import TileType
@@ -9,10 +11,10 @@ from .tools import update_mutation
 class CreateTile(graphene.relay.ClientIDMutation):
     class Input:
         name = graphene.String(required=True)
-        file_name = graphene.String()
-        description = graphene.String()
-        size_x = graphene.Int()
-        size_y = graphene.Int()
+        file_name = graphene.String(required=False)
+        description = graphene.String(required=False)
+        size_x = graphene.Int(required=False)
+        size_y = graphene.Int(required=False)
 
     tile = graphene.Field(TileType)
     
@@ -22,18 +24,11 @@ class CreateTile(graphene.relay.ClientIDMutation):
         root, 
         info, 
         name,
-        file_name,
-        description,
-        size_x,
-        size_y,
+        **kwargs
     ):
-        tile = Tile.objects.create(
-        name=name,
-        file_name=file_name,
-        description=description,
-        size_x=size_x,
-        size_y=size_y,
-        )
+
+        tile = Tile.objects.create(name=name)
+        update_mutation(tile, tile.__class__, kwargs)
         tile.save()
         return CreateTile(tile=tile)
 
@@ -58,7 +53,7 @@ class UpdateTile(graphene.relay.ClientIDMutation):
     ):
         tile = Tile.objects.get(pk=from_global_id(id)[1])
         update_mutation(tile, tile.__class__, kwargs)
-        
+        tile.edited = datetime.now(tz=timezone.get_current_timezone())
         tile.save()
         return UpdateTile(tile=tile)
 
