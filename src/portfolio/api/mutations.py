@@ -13,8 +13,6 @@ class CreateTile(graphene.relay.ClientIDMutation):
         name = graphene.String(required=True)
         file_name = graphene.String(required=False)
         description = graphene.String(required=False)
-        size_x = graphene.Int(required=False)
-        size_y = graphene.Int(required=False)
 
     tile = graphene.Field(TileType)
     
@@ -38,8 +36,6 @@ class UpdateTile(graphene.relay.ClientIDMutation):
         name = graphene.String()
         file_name = graphene.String()
         description = graphene.String()
-        size_x = graphene.Int()
-        size_y = graphene.Int()
 
     tile = graphene.Field(TileType)
 
