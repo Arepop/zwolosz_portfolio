@@ -9,7 +9,5 @@ class Tile(models.Model):
     name = models.TextField(unique=True)
     file_name = models.TextField(default="")
     description = models.TextField(default="")
-    size_x = models.IntegerField(default=100)
-    size_y = models.IntegerField(default=100)
     created = models.DateTimeField(default=datetime.now(tz=timezone.get_current_timezone()))
     edited = models.DateTimeField(default=datetime.now(tz=timezone.get_current_timezone()))
