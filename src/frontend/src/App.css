@@ -2,8 +2,13 @@
   text-align: center;
   max-width: 100vw;
   overflow-x: hidden;
-}
+  width: 100%;
+  height: 100%; 
+  overflow: hidden; 
+  position: relative;
 
+
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -37,4 +42,15 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+html {
+  scrollbar-width: thick;
+  scrollbar-color:  #343944 #282c34 ;
+  
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
 }
