@@ -6,6 +6,8 @@ export const TILE_LIST_QUERY = gql`
                   edges {
                     node {
                       name
+                      fileName
+                      created
                     }
                   }
                 }
